@@ -65,12 +65,12 @@ function rotateNavColor() {
     navLinks[3].style.color = "black";
 }
 
-//WHEN WINDOW (bodyText bc I don't know how to load the window itself) LOADS, ALERT POPS UP "The page is loaded!"
+//WHEN WINDOW (bodyText bc I don't know how to load the window itself) LOADS, ALERT POPS UP
 
-bodyText[0].onload = loadAlert;
-function loadAlert() {
-    alert("The page is loaded!")
-}
+// bodyText[0].onload = loadAlert;
+// function loadAlert() {
+//     alert("The page is loaded!")
+// }
 
 //KEYDOWN CHANGES BODYTEXT COLOR
 bodyText[0].addEventListener("keydown", function(){
@@ -78,10 +78,24 @@ bodyText[0].addEventListener("keydown", function(){
     console.log("your keydown works!")
 })
 
+//DOUBLECLICK
+let advenAwaits = document.querySelectorAll(".img-content img");
 
-//DOUBLECLICK (doesn't work? Overwritten by yellow?)
-// let advenPic = document.querySelectorAll(".img-content img");
-// advenPic[0].dblclick = outlinePic;
-// function outlinePic() {
-//     advenPic[0].style.backgroundColor = "red";
-// }
+advenAwaits[0].addEventListener("dblclick", function(){
+    console.log("you're double clicking!")
+    advenAwaits[0].setAttribute('src', "/fun.1d28a3ac.jpg")
+    advenAwaits[0].setAttribute('alt', "your picture is gone!");
+})
+
+//ONWHEEL ZOOM ON PHOTOS
+
+//this works but idk how to add it to anything else
+const contentImg = document.querySelector('.content-section img')
+function zoom(event){
+    event.preventDefault();
+    scale += event.deltaY * -0.01;
+    scale = Math.min(Math.max(.300, scale), 1.3);
+    contentImg.style.transform = `scale(${scale})`;
+}
+let scale = 1;
+contentImg.onwheel = zoom;
